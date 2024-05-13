@@ -27,11 +27,11 @@ jobs:
           dotnet-version: '8.0'
 
       - name: Restore NuGet packages
-        working-directory: ./APICliente/APICliente
+        working-directory: ./APIProduto/APIProduto
         run: dotnet restore
 
       - name: Build API
-        working-directory: ./APICliente/APICliente
+        working-directory: ./APIProduto/APIProduto
         run: dotnet build --configuration Release
 
       - name: Log in to AWS ECR
@@ -40,16 +40,16 @@ jobs:
           aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 399256494712.dkr.ecr.us-east-1.amazonaws.com
 
       - name: Build Docker image
-        working-directory: ./APICliente
+        working-directory: ./APIProduto
         run: |
-          docker build -t ecr-cliente .          
-          docker tag ecr-cliente:latest 399256494712.dkr.ecr.us-east-1.amazonaws.com/ecr-cliente:latest
+          docker build -t ecr-produto .          
+          docker tag ecr-produto:latest 399256494712.dkr.ecr.us-east-1.amazonaws.com/ecr-produto:latest
 
       - name: Push Docker image to ECR
         run: |
-          docker push 399256494712.dkr.ecr.us-east-1.amazonaws.com/ecr-cliente:latest
+          docker push 399256494712.dkr.ecr.us-east-1.amazonaws.com/ecr-produto:latest
 
       - name: Update ECS with new image
         id: new-deploy
         run: |                    
-          aws ecs update-service --cluster piklesCluster --service svc-cliente --force-new-deployment
+          aws ecs update-service --cluster piklesCluster --service svc-produto --force-new-deployment
