@@ -36,7 +36,7 @@ jobs:
           restore-keys: ${{ runner.os }}-sonar-scanner
 
       - name: Install SonarCloud scanner
-        working-directory: ./APICliente
+        working-directory: ./APIProduto
         if: steps.cache-sonar-scanner.outputs.cache-hit != 'true'
         shell: pwsh
         run: |
@@ -44,14 +44,14 @@ jobs:
           dotnet tool update dotnet-sonarscanner --tool-path .sonar\scanner
 
       - name: Build and analyze
-        working-directory: ./APICliente
+        working-directory: ./APIProduto
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         shell: pwsh
         run: |          
           dotnet tool install --global dotnet-coverage
-          .\..\.sonar\scanner\dotnet-sonarscanner begin /k:"eraldoads_TechChallenge-Grupo13-Cliente" /o:"sonarcloud-github-2024" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml          
-          dotnet build APICliente.sln --configuration Release --no-incremental          
+          .\..\.sonar\scanner\dotnet-sonarscanner begin /k:"eraldoads_TechChallenge-Grupo13-Produto" /o:"sonarcloud-github-2024" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml          
+          dotnet build APIProduto.sln --configuration Release --no-incremental          
           dotnet-coverage collect "dotnet test" -f xml -o "coverage.xml"          
           .\..\.sonar\scanner\dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
