@@ -74,7 +74,6 @@ namespace Application.Interfaces
             }
         }
 
-
         /// <summary>
         /// Atualiza um produto existente.
         /// </summary>
