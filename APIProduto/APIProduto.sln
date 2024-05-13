@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIProduto", "APICliente\APIProduto.csproj", "{47EF0A8C-2F0A-46CE-BE96-77B16196065F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIProduto", "APIProduto\APIProduto.csproj", "{47EF0A8C-2F0A-46CE-BE96-77B16196065F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - WebAPI", "1 - WebAPI", "{B5C2E471-6498-4DD2-A8DB-D38C6CB87B1C}"
 EndProject
