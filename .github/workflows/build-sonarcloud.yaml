@@ -2,7 +2,7 @@ name: SonarCloud
 on:
   push:
     branches:
-      - feature/era-produtoMicrosservico
+      - feature/felipe-sonar
       - develop
   pull_request:
     types: [opened, synchronize, reopened]
