@@ -9,7 +9,8 @@ Tanto o build e push para o repositório no ECR da AWS usando Terraform, quanto 
 🧑🏻‍💻 *<b>RM352032</b>*: Luís Felipe Amengual Tatsch </br>
 
 ## Arquitetura
-![image](https://github.com/eraldoads/TechChallenge-Grupo13-Cliente/assets/47857203/2fa81645-598e-49b3-aa34-0675ef505d6d)
+![image](https://github.com/eraldoads/TechChallenge-Grupo13-Produto/assets/47857203/344a8e35-a050-466a-9a7d-21a556607535)
+
 
 ## Testes
 
@@ -17,7 +18,11 @@ Utilizamos a ferramenta SonarCloud para análise de código e cobertura de teste
 
 https://sonarcloud.io/summary/overall?id=eraldoads_TechChallenge-Grupo13-Produto
 
-![image](https://github.com/eraldoads/TechChallenge-Grupo13-Produto/assets/47857203/7260d1c5-a352-4866-bd3e-6b576f4fe3a4)
+![image](https://github.com/eraldoads/TechChallenge-Grupo13-Produto/assets/47857203/c27d8f31-d608-41ed-97b4-f7474862af64)
+
+![image](https://github.com/eraldoads/TechChallenge-Grupo13-Produto/assets/47857203/33190947-77ec-4c72-a68a-de5bc7245a06)
+
+
 
 
 
