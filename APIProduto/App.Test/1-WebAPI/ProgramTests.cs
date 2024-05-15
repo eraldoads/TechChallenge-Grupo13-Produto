@@ -21,13 +21,13 @@ namespace APIProduto.Tests
         }
 
         [Fact]
-        public async Task GetClientes_ReturnsOk()
+        public async Task GetProdutos_ReturnsOk()
         {
             // Arrange
             var expectedStatusCode = HttpStatusCode.NotFound;
 
             // Act
-            var response = await _client.GetAsync("/clientes");
+            var response = await _client.GetAsync("/produtos");
 
             // Assert
             Assert.Equal(expectedStatusCode, response.StatusCode);

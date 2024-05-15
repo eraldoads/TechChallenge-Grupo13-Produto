@@ -8,17 +8,17 @@ EXPOSE 8080
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["APICliente/APICliente.csproj", "APICliente/"]
-RUN dotnet restore "./APICliente/APICliente.csproj"
+COPY ["APIProduto/APIProduto.csproj", "APIProduto/"]
+RUN dotnet restore "./APIProduto/APIProduto.csproj"
 COPY . .
-WORKDIR "/src/APICliente"
-RUN dotnet build "./APICliente.csproj" -c $BUILD_CONFIGURATION -o /app/build
+WORKDIR "/src/APIProduto"
+RUN dotnet build "./APIProduto.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./APICliente.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "./APIProduto.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "APICliente.dll"]
+ENTRYPOINT ["dotnet", "APIProduto.dll"]
