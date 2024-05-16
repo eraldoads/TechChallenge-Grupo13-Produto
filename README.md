@@ -9,8 +9,12 @@ Tanto o build e push para o repositório no ECR da AWS usando Terraform, quanto 
 🧑🏻‍💻 *<b>RM352032</b>*: Luís Felipe Amengual Tatsch </br>
 
 ## Arquitetura
+Quando disparamos a Github Action, é realizado o build da aplicação e o push para o repositório criado previamente no Elastic Container Registry (ECS).
+Ao final da action, é atualizada a Service no Elastic Container Service (ECS), executando assim a service que irá realizar a criação do container.
 
 ![image](https://github.com/eraldoads/TechChallenge-Grupo13-Produto/assets/47857203/e5c163d0-8d81-4f8d-8f6f-3d039cbe917b)
+
+Para este microsserviço, utilizamos .NET 8.0, o que também representa uma evolução de tecnologia em relação ao monolito, o qual foi baseado no .NET 6.0 .
 
 ## Testes
 
