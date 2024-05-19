@@ -6,7 +6,6 @@ using Domain.Interfaces;
 using Domain.ValueObjects;
 using Microsoft.AspNetCore.JsonPatch;
 using Moq;
-using NuGet.Protocol.Core.Types;
 using System.ComponentModel.DataAnnotations;
 using Xunit;
 
