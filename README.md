@@ -8,6 +8,16 @@ Tanto o build e push para o repositório no ECR da AWS usando Terraform, quanto 
 🧑🏻‍💻 *<b>RM352316</b>*: Eraldo Antonio Rodrigues </br>
 🧑🏻‍💻 *<b>RM352032</b>*: Luís Felipe Amengual Tatsch </br>
 
+## Escaneamento de vulnerabilidades - OWASP ZAP
+
+Na fase 5, realizamos o escaneamento utilizando a ferramenta OWASP ZAP para identificarmos e tratarmos possíveis vulnerabilidades.
+
+![image](https://github.com/user-attachments/assets/c981c9b7-f3f2-4692-b40b-7456bfb00273)
+
+Não foram encontradas vulnerabilidades médias ou altas, portanto, não foi necessário o tratamento.
+
+O relatório OWASP-ZAP-Listar_Exibir Cardápio.pdf encontra-se na raíz desse projeto.
+
 ## Arquitetura
 Quando disparamos a Github Action, é realizado o build da aplicação e o push para o repositório criado previamente no Elastic Container Registry (ECS).
 Ao final da action, é atualizada a Service no Elastic Container Service (ECS), executando assim a service que irá realizar a criação do container.
