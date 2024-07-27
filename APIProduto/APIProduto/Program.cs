@@ -13,48 +13,48 @@ using System.Globalization;
 namespace APIProduto
 {
     [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
-    // Cria um builder de aplicação web com os argumentos passados.
+    // Cria um builder de aplicaÃ§Ã£o web com os argumentos passados.
     public class Program
     {
         public static void Main(string[] args)
         {
-            // Cria um builder de aplicação web com os argumentos passados.
+            // Cria um builder de aplicaÃ§Ã£o web com os argumentos passados.
             var builder = WebApplication.CreateBuilder(args);
 
-            // Adiciona serviços ao contêiner.
-            //// Adiciona um serviço do tipo MySQLContext ao objeto builder.Services.
+            // Adiciona serviÃ§os ao contÃªiner.
+            //// Adiciona um serviÃ§o do tipo MySQLContext ao objeto builder.Services.
             builder.Services.AddDbContext<MySQLContext>();
 
-            // Adiciona os serviços de controllers ao builder.
+            // Adiciona os serviÃ§os de controllers ao builder.
             builder.Services.AddControllers(options =>
             {
                 // Insere um formato de entrada personalizado para o JsonPatch.
                 options.InputFormatters.Insert(0, JsonPatchSample.MyJPIF.GetJsonPatchInputFormatter());
             });
 
-            // Adiciona os serviços específicos ao contêiner.
+            // Adiciona os serviÃ§os especÃ­ficos ao contÃªiner.
             builder.Services.AddScoped<IProdutoService, ProdutoService>();
 
-            // Adiciona os repositórios específicos ao contêiner.
+            // Adiciona os repositÃ³rios especÃ­ficos ao contÃªiner.
             builder.Services.AddScoped<IProdutoRepository, ProdutoRepository>();
 
             // Adiciona o suporte ao NewtonsoftJson aos controllers.
             builder.Services.AddControllers().AddNewtonsoftJson();
 
-            // Configura as opções de rota para usar URLs e query strings em minúsculo.
+            // Configura as opÃ§Ãµes de rota para usar URLs e query strings em minÃºsculo.
             builder.Services.Configure<RouteOptions>(options =>
             {
                 options.LowercaseUrls = true;
                 options.LowercaseQueryStrings = true;
             });
 
-            // Configura os serviços relacionados aos controladores.
+            // Configura os serviÃ§os relacionados aos controladores.
             builder.Services.AddControllers(options =>
             {
                 options.Filters.Add(typeof(AjustaDataHoraLocal));
             }).AddNewtonsoftJson(options =>
             {
-                // Usa a formatação padrão (PascalCase) para as propriedades.
+                // Usa a formataÃ§Ã£o padrÃ£o (PascalCase) para as propriedades.
                 options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
                 options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
                 options.SerializerSettings.Converters.Add(new StringEnumConverter());
@@ -66,17 +66,17 @@ namespace APIProduto
             builder.Services.AddEndpointsApiExplorer();
 
             var licenseUrl = Environment.GetEnvironmentVariable("LicenseUrl");
-            // Configuração do SwaggerGen para gerar a documentação da Web API.
+            // ConfiguraÃ§Ã£o do SwaggerGen para gerar a documentaÃ§Ã£o da Web API.
             builder.Services.AddSwaggerGen(
                 c =>
                 {
-                    // Habilita o uso de anotações (como [SwaggerOperation]) para melhorar a documentação.
+                    // Habilita o uso de anotaÃ§Ãµes (como [SwaggerOperation]) para melhorar a documentaÃ§Ã£o.
                     c.EnableAnnotations();
-                    // Define a versão da documentação Swagger como "v1".
+                    // Define a versÃ£o da documentaÃ§Ã£o Swagger como "v1".
                     c.SwaggerDoc("v1", new OpenApiInfo
                     {
-                        Title = "Tech Challenge - Grupo 13 - Fase IV",
-                        Description = "Documentação dos endpoints da API sobre o uso de microsserviços de produtos.",
+                        Title = "Tech Challenge - Grupo 13 - Fase V",
+                        Description = "DocumentaÃ§Ã£o dos endpoints da API sobre o uso de microsserviÃ§os de produtos.",
                         Contact = new OpenApiContact() { Name = "Tech Challenge - Grupo 13", Email = "grupo13@fiap.com" },
                         License = new OpenApiLicense() { Name = "MIT License", Url = licenseUrl != null ? new Uri(licenseUrl) : null },
                         Version = "1.0.11"
@@ -89,7 +89,7 @@ namespace APIProduto
 
             var app = builder.Build();
 
-            // Adiciona o middleware de codificação para garantir a codificação correta em todas as respostas.
+            // Adiciona o middleware de codificaÃ§Ã£o para garantir a codificaÃ§Ã£o correta em todas as respostas.
             app.Use((context, next) =>
             {
                 context.Response.Headers.ContentType = "application/json; charset=utf-8";
@@ -98,7 +98,7 @@ namespace APIProduto
                 return next();
             });
 
-            // Configura a pipeline de solicitação HTTP.
+            // Configura a pipeline de solicitaÃ§Ã£o HTTP.
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
@@ -125,16 +125,16 @@ namespace APIProduto
                 });
             }
 
-            // Adiciona o middleware de autorização à pipeline de solicitação HTTP.
-            // Este middleware é responsável por garantir que o usuário esteja autorizado a acessar os recursos solicitados.
+            // Adiciona o middleware de autorizaÃ§Ã£o Ã  pipeline de solicitaÃ§Ã£o HTTP.
+            // Este middleware Ã© responsÃ¡vel por garantir que o usuÃ¡rio esteja autorizado a acessar os recursos solicitados.
             app.UseAuthorization();
 
-            // Adiciona o middleware de roteamento de controladores à pipeline de solicitação HTTP.
-            // Este middleware é responsável por rotear as solicitações HTTP para os controladores apropriados.
+            // Adiciona o middleware de roteamento de controladores Ã  pipeline de solicitaÃ§Ã£o HTTP.
+            // Este middleware Ã© responsÃ¡vel por rotear as solicitaÃ§Ãµes HTTP para os controladores apropriados.
             app.MapControllers();
 
-            // Inicia a execução da aplicação.
-            // Este método bloqueia o thread chamado e aguarda até que a aplicação seja encerrada.
+            // Inicia a execuÃ§Ã£o da aplicaÃ§Ã£o.
+            // Este mÃ©todo bloqueia o thread chamado e aguarda atÃ© que a aplicaÃ§Ã£o seja encerrada.
             app.Run();
         }
     }
